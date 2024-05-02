@@ -1,0 +1,18 @@
+.seekbar{
+    -webkit-appearance: none;
+    height:7px;
+    border-radius: 10px;
+    background: #383838;
+    overflow: hidden;
+    cursor: pointer;
+}
+.seekbar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 9px; 
+     height: 20px;
+    border-radius: 50%;
+    background: #2bc5b4;
+    box-shadow: -400px 0 0 400px mediumorchid ;
+    margin-top: -7px;
+    margin-bottom: -7px;
+}

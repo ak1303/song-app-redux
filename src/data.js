@@ -115,40 +115,35 @@ const playLists = [
     },
     {
         id: 3906,
-        name: "Gabbar Singh",
-        releaseDate: "24 Dec 2017",
-        displayPicture: "https://i.scdn.co/image/ab67616d00001e0204544e27451a2195dd91b9cf",
+        name: "M.S. Dhoni: The Untold Story",
+        releaseDate: "30 Sep 2016",
+        displayPicture: "https://wallpapers.com/images/hd/ms-dhoni-movie-poster-fw7q3g4fur2c6vpy.jpg",
         songs: [
             {
                 id: 390601,
-                title: "Akasam Ammaithe",
-                fileAddress: "gabbar_singh/akasam_ammaithe.mp3",
+                title: "Besabriyaan",
+                fileAddress: "msd/besabriyaan.mp3",
             },
             {
                 id: 390602,
-                title: "Dekho Dekho Gabbar singh",
-                fileAddress: "gabbar_singh/dekho_dekho.mp3",
+                title: "Kaun Tujhe",
+                fileAddress: "msd/kaun_tujhe.mp3",
             },
             {
                 id: 390603,
-                title: "Dilse Dilse",
-                fileAddress: "gabbar_singh/dilse.mp3",
+                title: "Jab Tak",
+                fileAddress: "msd/jab_tak.mp3",
             },
             {
                 id: 390604,
-                title: "Kevvu keka",
-                fileAddress: "gabbar_singh/kevvu_keka.mp3",
+                title: "Parwah Nahin",
+                fileAddress: "msd/parwah_nahi.mp3",
             },
             {
                 id: 390605,
-                title: "Mandu Babulam",
-                fileAddress: "gabbar_singh/mandu_babulam.mp3",
+                title: "Har Gully Mein Dhoni Hai",
+                fileAddress: "msd/har_gully.mp3",
             },
-            {
-                id: 390606,
-                title: "Pilla nuvvuleni jeevitham",
-                fileAddress: "gabbar_singh/pilla.mp3",
-            }
         ]
     }
 ]

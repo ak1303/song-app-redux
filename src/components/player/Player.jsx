@@ -5,6 +5,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import './player.css';
 
 const playerInfoSelector= (state) =>{//get songTitle,movie dp, song address and player state from movies 
   const movies = state.movies;
@@ -78,6 +79,10 @@ const Player = () => {
   const updateTime = ()=>{
     setSeekTime(audioRef.current.currentTime);
   }
+  const updateTimeOnDrag = (e) =>{
+    audioRef.current.currentTime = e.target.value;
+    setSeekTime(e.target.value);
+  }
   const togglePlay = () =>{
     console.log('toggles play btn')
     dispatch({type:'set_play_status'})
@@ -105,9 +110,10 @@ const Player = () => {
     }
   },[playerInfo?.isPlaying, playerInfo?.index])
 
+  
   if(!playerInfo)
     return (
-      <div className='bg-black grid grid-cols-1 items-center text-white'>
+      <div className='bg-[#f6f6f6] grid grid-cols-1 items-center text-white'>
       <div className='audio  rounded-full flex flex-col items-center p-2 gap-3'>
         <div className='icons flex gap-3'>
           <SkipPreviousIcon className='text-[grey]'/>
@@ -125,12 +131,19 @@ const Player = () => {
     </div>
     )
   return (
-    <div className='bg-black grid grid-cols-3 items-center text-white'>
+    <>
+    {/* <div className={`bg-[green] h-[6px] rounded-full`} style={{width:playerWidth}}></div> */}
+    <div>
+      <div className='bg-[#2a2d36]'>
+        <div className={`bg-[#2bc5b4] h-[6px] rounded-full`} style={{width:playerWidth}}></div>
+      </div>
+      <div className='bg-[#f6f6f6] grid grid-cols-3 items-center text-black'>
       <audio 
         ref={audioRef} 
         onCanPlayThrough={()=>setTotalDuration(audioRef.current.duration)}
         src={ "/"+ playerInfo.songAddress} controls 
         onTimeUpdate={updateTime}
+        onEnded={playNextSong}
         className='hidden'
       />
       <div className='p-2 flex'>
@@ -143,15 +156,16 @@ const Player = () => {
         <div className='icons flex gap-3'>
           <SkipPreviousIcon onClick={playPrevSong}/>
           {playerInfo.isPlaying ?
-            <PauseIcon onClick={togglePlay} className='text-white'/>
-            :<PlayArrowIcon onClick={togglePlay} className='text-white'/>
+            <PauseIcon onClick={togglePlay} className='text-black'/>
+            :<PlayArrowIcon onClick={togglePlay} className='text-black'/>
           }
           <SkipNextIcon onClick={playNextSong}/>
         </div>
          <div className='flex gap-2 w-full items-center'>
           <p className='text-[grey]'>{breakTime(seekTime)}</p>
-          <div className={`sound-bar bg-[#272727] w-full h-[6px] rounded-full`}>
-          <div className={`bg-[green] h-[6px] rounded-full`} style={{width:playerWidth}}></div>
+          <div className={`w-full h-[7px] relative`}>
+            <input type="range" value={seekTime} min={0} max={duration} onChange={updateTimeOnDrag}
+            className='seekbar w-full absolute'/>
           </div>
           <p className='text-[grey]'>{breakTime(duration)}</p>
          </div>
@@ -163,6 +177,9 @@ const Player = () => {
         }
       </div>
     </div>
+    </div>
+    
+    </>
   )
 }
 

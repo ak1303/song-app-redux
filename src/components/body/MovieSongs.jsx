@@ -31,9 +31,13 @@ const MovieSongs = () => {
     dispatch({type:'REMOVE_SONG', payload:{songId}})
   }
   
+  const playAll = () =>{
+    const songId = movieList.filter(m => m.id==movieId)[0].songs[0].id;
+    dispatch({type:'set_song', payload:{songId, movieId, index:0, playlist:'movie'}})
+  }
   return (
     <div className='flex h-full'>
-    <div className='bg-[#121212] text-white h-full flex flex-col justify-around p-2 gap-2 w-3/4'>
+    <div className='bg-[#2a2d36] text-white h-full flex flex-col justify-around p-2 gap-2 w-3/4'>
       {songList.map((song,index)=>{
         const likedSongId = likedSongList.filter((likedSong)=>likedSong.songId == song.id);
         const isLiked = likedSongId.length == 1 ? true : false;
@@ -57,10 +61,11 @@ const MovieSongs = () => {
           </div>
         )})}
     </div>
-      <div className='flex w-1/4 text-black h-full p-5 bg-[#121212]'>
+      <div className='flex w-1/4 text-black h-full p-5 bg-[#2a2d36]'>
         <div className='rounded-xl p-2 -[grey] w-full h-full flex flex-col items-center justify-around'>
           <div className='text-xl text-white'>{selectedMovie.name}</div>
           <img src={selectedMovie.displayPicture} alt={selectedMovie.name}  className='rounded-lg'/>
+          <button className='bg-[crimson] rounded-3xl py-2 px-3 text-white w-[50%]' onClick={playAll}>Play All</button>
         </div>
       </div>
     </div>

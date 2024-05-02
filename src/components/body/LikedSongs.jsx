@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Favorite from '@mui/icons-material/Favorite';
 import PauseIcon from '@mui/icons-material/Pause';
@@ -41,12 +41,10 @@ const LikedSongs = () => {
   const removeLikedSong = () => {
     dispatch({type:'REMOVE_SONG', payload:selectedMovie.id})
   }
-
-
   
   return (
     <div className='flex h-full'>
-    <div className='bg-[#121212] text-white h-full flex flex-col justify-around p-2 gap-2 w-3/4'>
+    <div className='bg-[#2a2d36] text-white h-full flex flex-col justify-around p-2 gap-2 w-3/4'>
       <h1 className='text-xl px-2 text-[aqua] text-center'>Liked Songs</h1>
       {likedSongInfo.map((song,index)=>{
         return (
@@ -65,10 +63,10 @@ const LikedSongs = () => {
           </div>
         )})}
     </div>
-      <div className='flex w-1/4 text-black h-full p-5 bg-[#121212]'>
+      <div className='flex w-1/4 text-black h-full p-5 bg-[#2a2d36]'>
         <div className='rounded-xl p-2 -[grey] w-full h-full flex flex-col items-center justify-around'>
           <div className='text-xl text-white'>{likedSongInfo.selectedMovie?.name}</div>
-          <img src={likedSongInfo.selectedMovie?.displayPicture} alt={likedSongInfo.selectedMovie?.name}  className='rounded-lg'/>
+          <img src='/likedSong.jpeg' alt="hello" className='rounded-lg'/>
         </div>
       </div>
     </div>

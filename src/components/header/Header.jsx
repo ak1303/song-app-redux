@@ -9,7 +9,7 @@ const Header = () => {
   const likedSongs = useSelector(state=>state.likedSongs);
   const totalLikedSongs = likedSongs.length;
   return (
-    <div className='bg-[#23163f] text-[#afaaa0] flex justify-between items-center px-5'>
+    <div className='bg-[#003135] text-[#afaaa0] flex justify-between items-center px-5 border-b'>
       <Link to="/">
         <header className="italic font-bold text-xl text-green-400 " ><span className='text-red-500'>Songs</span>.com</header>
       </Link>
