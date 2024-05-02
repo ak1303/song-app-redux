@@ -6,6 +6,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import './player.css';
+import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 
 const playerInfoSelector= (state) =>{//get songTitle,movie dp, song address and player state from movies 
   const movies = state.movies;
@@ -71,6 +73,7 @@ const Player = () => {
 
   
   const[duration,setTotalDuration]=useState(0);
+  const [mute, setMute] = useState(false);
   const[seekTime, setSeekTime]=useState(0);
   const playerInfo = useSelector(playerInfoSelector);
   const dispatch = useDispatch();
@@ -110,6 +113,14 @@ const Player = () => {
     }
   },[playerInfo?.isPlaying, playerInfo?.index])
 
+  const toggleMute = () =>{
+    setMute(!mute);
+    if(mute){
+      audioRef.current.muted = false;
+    }else{
+      audioRef.current.muted = true;
+    }
+  }
   
   if(!playerInfo)
     return (
@@ -170,7 +181,10 @@ const Player = () => {
           <p className='text-[grey]'>{breakTime(duration)}</p>
          </div>
       </div>
-      <div className="justify-self-end me-5" >
+      <div className="flex gap-5 justify-self-end me-5" >
+        <div className='me-16' >
+          {mute ? <VolumeOffIcon onClick={toggleMute} />:<VolumeMuteIcon onClick={toggleMute} />}
+        </div>
         {playerInfo.playlist === 'likedsongs'?
             <div className='text-slate-400'>Playing Liked Song Playlist...</div>
           : <div className='text-slate-400'>Playing Movie Playlist...</div>
